@@ -27,10 +27,17 @@ const tags = [
 const games = [
   'World of Warcraft',
   'Final Fantasy XIV',
+  'Guild Wars 2',
 ];
 
 const data = {
   guilds: {
+    get: (id: number) => {
+      return guilds.find(guild => {
+        console.log(guild);
+        return guild.id === id;
+      });
+    },
     getAll: () => {
       return guilds;
     },
