@@ -1,4 +1,4 @@
-import type { Route } from './+types/form';
+import type { Route } from './+types/create';
 import { Form } from 'react-router';
 import data from '../../data';
 import GuildForm from '../../guild-form/guild-form';
@@ -21,6 +21,7 @@ export default function Component({ loaderData, actionData }: Route.ComponentPro
   return (
     <>
       <GuildForm
+        id={null}
         tags={loaderData.tags}
         games={loaderData.games}
       />

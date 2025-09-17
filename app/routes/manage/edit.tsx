@@ -1,5 +1,5 @@
-import type { Route } from './+types/form';
-import { Form } from 'react-router';
+import type { Route } from './+types/edit';
+import { Form, redirect } from 'react-router';
 import data from '../../data';
 import GuildForm from '../../guild-form/guild-form';
 
@@ -7,6 +7,11 @@ export function loader({ params }: Route.LoaderArgs) {
   const id = Number.parseInt(params.id);
 
   const guild = data.guilds.get(id);
+
+  if (guild === undefined) {
+    throw redirect('/guilds');
+  }
+
   const tags = data.guilds.getTags();
   const games = data.guilds.getGames();
 

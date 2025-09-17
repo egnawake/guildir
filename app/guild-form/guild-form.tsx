@@ -9,7 +9,7 @@ interface Prefill {
 }
 
 interface GuildFormProps {
-  id?: number;
+  id: number | null;
   tags: string[];
   games: string[];
   prefill?: Prefill;
