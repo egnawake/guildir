@@ -1,6 +1,19 @@
-import { createServerClient, parseCookieHeader, serializeCookieHeader } from '@supabase/ssr';
+import {
+  createServerClient,
+  parseCookieHeader as _parseCookieHeader,
+  serializeCookieHeader
+} from '@supabase/ssr';
 
-export function createClient(request) {
+// The 'parseCookieHeader' function from '@supabase/ssr' is incompatible with the return type of 'getAll' in the cookie header object passed to 'createServerClient' (see https://github.com/supabase/ssr/issues/115)
+function parseCookieHeader(header: string) {
+  const cookiePairs = _parseCookieHeader(header);
+  return cookiePairs.map(pair => ({
+    ...pair,
+    value: pair.value ?? ''
+  }));
+}
+
+export function createClient(request: Request) {
   const headers = new Headers();
 
   const supabase = createServerClient(
