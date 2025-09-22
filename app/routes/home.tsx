@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, Form } from "react-router";
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 
@@ -15,6 +15,10 @@ export default function Home() {
       <nav>
         <Link to="/guilds">Guilds</Link>
       </nav>
+
+      <Form action="/logout" method="post">
+        <button type="submit">Logout</button>
+      </Form>
     </>
   );
 }

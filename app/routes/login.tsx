@@ -16,7 +16,7 @@ export async function action({ request }: Route.ActionArgs) {
 
   if (error) {
     console.error(error);
-    return redirect('/error');
+    return redirect('/error', { headers });
   }
 
   return routerData({}, { headers });

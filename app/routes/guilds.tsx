@@ -41,7 +41,7 @@ export async function loader({ request }: Route.LoaderArgs) {
 
   return routerData({
     status,
-    email: user.email,
+    email: user && user.email,
     guilds
   }, { headers });
 }
