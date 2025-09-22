@@ -6,6 +6,8 @@ import { createClient } from '../supabase.server';
 export async function loader({ request }: Route.LoaderArgs) {
   const { supabase, headers } = createClient(request);
 
+  const { data: { user } } = await supabase.auth.getUser();
+
   const { status, data, error } = await supabase.from('guilds').select(`
     id,
     name,
@@ -37,7 +39,11 @@ export async function loader({ request }: Route.LoaderArgs) {
     };
   }) : null;
 
-  return routerData({ status, guilds }, { headers });
+  return routerData({
+    status,
+    email: user.email,
+    guilds
+  }, { headers });
 }
 
 function Error({ status, message }: { status: number, message: string }) {
@@ -53,6 +59,7 @@ export default function Guilds({ loaderData }: Route.ComponentProps) {
   return (
     <>
       <h1>Guilds</h1>
+      {loaderData.email !== null && <p>Logged in as {loaderData.email}</p>}
       {loaderData.guilds === null
         ? <Error
             status={loaderData.status}
