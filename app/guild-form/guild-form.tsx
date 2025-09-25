@@ -52,16 +52,16 @@ export default function GuildForm({
         <legend>Tags</legend>
         {tags.map(tag => {
           return (
-            <div key={tag}>
+            <div key={tag.id}>
               <input
                 type="checkbox"
-                id={`${renderId}-tags-${tag}`}
+                id={`${renderId}-tags-${tag.id}`}
                 name="tag"
-                value={tag}
-                defaultChecked={prefill['tags'].includes(tag)}
+                value={tag.id}
+                defaultChecked={prefill['tags'].includes(tag.id)}
               />
-              <label htmlFor={`${renderId}-tags-${tag}`}>
-                {tag}
+              <label htmlFor={`${renderId}-tags-${tag.id}`}>
+                {tag.name}
               </label>
             </div>
           );
@@ -72,16 +72,16 @@ export default function GuildForm({
         <legend>Games</legend>
         {games.map(game => {
           return (
-            <div key={game}>
+            <div key={game.id}>
               <input
                 type="checkbox"
-                id={`${renderId}-game-${game}`}
+                id={`${renderId}-game-${game.id}`}
                 name="game"
-                value={game}
-                defaultChecked={prefill['games'].includes(game)}
+                value={game.id}
+                defaultChecked={prefill['games'].includes(game.id)}
               />
-              <label htmlFor={`${renderId}-game-${game}`}>
-                {game}
+              <label htmlFor={`${renderId}-game-${game.id}`}>
+                {game.name}
               </label>
             </div>
           );
